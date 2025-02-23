@@ -436,11 +436,6 @@ ninja.data = [{
           description: "with background image",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project/";
-            },},{id: "projects-a-distill-style-blog-post",
-          title: 'a distill-style blog post',
-          description: "an example of a distill-style blog post and main elements",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/distill/";
             },},{id: "projects-project-2",
           title: 'project 2',
           description: "a project with a background image and giscus comments",
