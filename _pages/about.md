@@ -25,4 +25,4 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-My name is Pablo Iyu Guerrero. I work as an AI Engineer at Aleph Alpha. I graduated in Summer of 2024 from my Master's in Computational Physics from the University of Edinburgh.
+My name is Pablo Iyu Guerrero. I'm an Inference AI Engineer at Aleph Alpha, where I build high‑throughput inference systems and bring new research ideas into production. I earned a Master’s in Computational Physics from the University of Edinburgh in the summer of 2024.
