@@ -163,8 +163,32 @@ function DiagramCard({ diagram, index }: { diagram: DiagramEntry; index: number 
 
 /* ── Expanded tile with mosaic grid ──────────────────────────── */
 
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, [breakpoint]);
+  return isMobile;
+}
+
 function ExpandedTile({ tileId, onClose }: { tileId: string; onClose: () => void }) {
   const tile = tiles.find((t) => t.id === tileId)!;
+  const isMobile = useIsMobile();
+
+  // On mobile: simple stacked layout. On desktop: mosaic grid.
+  const gridStyle = isMobile
+    ? { display: "flex" as const, flexDirection: "column" as const, gap: "1rem" }
+    : {
+        display: "grid" as const,
+        gridTemplateAreas: tile.gridTemplate.areas,
+        gridTemplateColumns: tile.gridTemplate.columns,
+        gridTemplateRows: tile.gridTemplate.rows,
+        alignItems: "start" as const,
+      };
 
   return (
     <>
@@ -199,16 +223,7 @@ function ExpandedTile({ tileId, onClose }: { tileId: string; onClose: () => void
             {tile.title}
           </motion.h2>
 
-          <div
-            className="gap-4 md:gap-6"
-            style={{
-              display: "grid",
-              gridTemplateAreas: tile.gridTemplate.areas,
-              gridTemplateColumns: tile.gridTemplate.columns,
-              gridTemplateRows: tile.gridTemplate.rows,
-              alignItems: "start",
-            }}
-          >
+          <div className="gap-4 md:gap-6" style={gridStyle}>
             {tile.diagrams.map((d, i) => (
               <DiagramCard key={d.area} diagram={d} index={i} />
             ))}
@@ -219,7 +234,7 @@ function ExpandedTile({ tileId, onClose }: { tileId: string; onClose: () => void
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 + i * 0.1 }}
-                style={{ gridArea: `text-${i}` }}
+                style={isMobile ? undefined : { gridArea: `text-${i}` }}
                 className="text-zinc-600 dark:text-zinc-400 leading-relaxed self-center px-1"
               >
                 {text}
