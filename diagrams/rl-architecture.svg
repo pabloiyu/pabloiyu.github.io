@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" fill="none">
+  <style>
+    text { font-family: 'Inter', sans-serif; font-size: 14px; fill: #a1a1aa; }
+    .label { font-size: 16px; font-weight: 600; fill: #d4d4d8; }
+    .accent { fill: #06B6D4; }
+    .box { stroke: #52525b; stroke-width: 2; rx: 12; fill: none; }
+    .box-accent { stroke: #06B6D4; stroke-width: 2; rx: 12; fill: rgba(6,182,212,0.05); }
+    .arrow { stroke: #52525b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    .arrow-accent { stroke: #06B6D4; stroke-width: 2; fill: none; marker-end: url(#arrowhead-accent); }
+    /* Hand-drawn effect */
+    .box, .box-accent { stroke-dasharray: none; stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#52525b"/>
+    </marker>
+    <marker id="arrowhead-accent" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#06B6D4"/>
+    </marker>
+  </defs>
+
+  <!-- Agent box -->
+  <rect class="box-accent" x="40" y="100" width="140" height="80"/>
+  <text class="label accent" x="110" y="145" text-anchor="middle">Agent</text>
+
+  <!-- Environment box -->
+  <rect class="box" x="420" y="100" width="140" height="80"/>
+  <text class="label" x="490" y="145" text-anchor="middle">Environment</text>
+
+  <!-- Policy box (small) -->
+  <rect class="box" x="230" y="30" width="140" height="50"/>
+  <text x="300" y="60" text-anchor="middle">Policy π(a|s)</text>
+
+  <!-- Reward box (small) -->
+  <rect class="box" x="230" y="210" width="140" height="50"/>
+  <text x="300" y="240" text-anchor="middle">Reward r(s,a)</text>
+
+  <!-- Arrow: Agent → Environment (action) -->
+  <path class="arrow-accent" d="M180 125 Q300 80 420 125"/>
+  <text class="accent" x="300" y="95" text-anchor="middle" font-size="12">action aₜ</text>
+
+  <!-- Arrow: Environment → Agent (state) -->
+  <path class="arrow" d="M420 160 Q300 210 180 160"/>
+  <text x="300" y="195" text-anchor="middle" font-size="12">state sₜ₊₁</text>
+
+  <!-- Arrow: Agent ↔ Policy -->
+  <line class="arrow" x1="110" y1="100" x2="230" y2="60"/>
+
+  <!-- Arrow: Environment → Reward -->
+  <line class="arrow" x1="490" y1="180" x2="370" y2="220"/>
+</svg>

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 280" fill="none">
+  <style>
+    text { font-family: 'Inter', sans-serif; font-size: 13px; fill: #a1a1aa; }
+    .label { font-size: 15px; font-weight: 600; fill: #d4d4d8; }
+    .accent { fill: #06B6D4; }
+    .box { stroke: #52525b; stroke-width: 2; rx: 10; fill: none; }
+    .box-accent { stroke: #06B6D4; stroke-width: 2; rx: 10; fill: rgba(6,182,212,0.05); }
+    .arrow { stroke: #52525b; stroke-width: 2; fill: none; marker-end: url(#arr); }
+    .arrow-accent { stroke: #06B6D4; stroke-width: 2; fill: none; marker-end: url(#arr-a); }
+  </style>
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#52525b"/>
+    </marker>
+    <marker id="arr-a" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#06B6D4"/>
+    </marker>
+  </defs>
+
+  <!-- Input Tokens -->
+  <rect class="box" x="20" y="90" width="110" height="70"/>
+  <text class="label" x="75" y="130" text-anchor="middle">Tokens</text>
+
+  <!-- Embedding -->
+  <rect class="box" x="170" y="90" width="110" height="70"/>
+  <text x="225" y="125" text-anchor="middle">Embedding</text>
+  <text x="225" y="142" text-anchor="middle" font-size="11">+ Position</text>
+
+  <!-- Transformer Block -->
+  <rect class="box-accent" x="320" y="50" width="140" height="150"/>
+  <text class="label accent" x="390" y="95" text-anchor="middle">Transformer</text>
+  <!-- Attention sub-block -->
+  <rect class="box" x="340" y="105" width="100" height="35"/>
+  <text x="390" y="127" text-anchor="middle" font-size="11">Self-Attention</text>
+  <!-- FFN sub-block -->
+  <rect class="box" x="340" y="150" width="100" height="35"/>
+  <text x="390" y="172" text-anchor="middle" font-size="11">Feed-Forward</text>
+
+  <!-- LM Head -->
+  <rect class="box" x="500" y="90" width="100" height="70"/>
+  <text x="550" y="125" text-anchor="middle">LM Head</text>
+  <text x="550" y="142" text-anchor="middle" font-size="11">Softmax</text>
+
+  <!-- Output -->
+  <rect class="box-accent" x="640" y="100" width="45" height="50"/>
+  <text class="accent" x="662" y="130" text-anchor="middle" font-size="12">yₜ</text>
+
+  <!-- Arrows -->
+  <line class="arrow" x1="130" y1="125" x2="168" y2="125"/>
+  <line class="arrow" x1="280" y1="125" x2="318" y2="125"/>
+  <line class="arrow-accent" x1="460" y1="125" x2="498" y2="125"/>
+  <line class="arrow-accent" x1="600" y1="125" x2="638" y2="125"/>
+
+  <!-- KV Cache label -->
+  <rect class="box" x="340" y="225" width="100" height="35"/>
+  <text x="390" y="247" text-anchor="middle" font-size="11">KV Cache</text>
+  <line class="arrow" x1="390" y1="200" x2="390" y2="223" stroke-dasharray="4"/>
+
+  <!-- Autoregressive loop -->
+  <path class="arrow-accent" d="M662 150 Q662 250 75 250 Q20 250 20 160" stroke-dasharray="6"/>
+  <text class="accent" x="350" y="270" text-anchor="middle" font-size="11">autoregressive loop</text>
+</svg>
