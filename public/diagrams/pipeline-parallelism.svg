@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 420" fill="none">
+  <style>
+    text { font-family: 'Inter', sans-serif; fill: #a1a1aa; font-size: 11px; }
+    .label { font-size: 13px; font-weight: 600; fill: #d4d4d8; }
+    .accent { fill: #06B6D4; }
+    .box { stroke: #52525b; stroke-width: 1.5; rx: 8; fill: none; }
+    .box-accent { stroke: #06B6D4; stroke-width: 1.5; rx: 8; fill: rgba(6,182,212,0.05); }
+    .arrow { stroke: #52525b; stroke-width: 1.5; marker-end: url(#ppArr); }
+    .arrow-a { stroke: #06B6D4; stroke-width: 1.5; marker-end: url(#ppArrA); }
+  </style>
+  <defs>
+    <marker id="ppArr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#52525b"/>
+    </marker>
+    <marker id="ppArrA" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#06B6D4"/>
+    </marker>
+  </defs>
+
+  <text class="label" x="100" y="22" text-anchor="middle">Pipeline Parallelism</text>
+
+  <!-- Micro-batches input -->
+  <rect x="30" y="40" width="32" height="22" rx="4" fill="rgba(6,182,212,0.25)" stroke="#06B6D4" stroke-width="1"/>
+  <text class="accent" x="46" y="55" text-anchor="middle" font-size="9">μB₁</text>
+  <rect x="68" y="40" width="32" height="22" rx="4" fill="rgba(6,182,212,0.15)" stroke="#06B6D4" stroke-width="1"/>
+  <text class="accent" x="84" y="55" text-anchor="middle" font-size="9">μB₂</text>
+  <rect x="106" y="40" width="32" height="22" rx="4" fill="rgba(6,182,212,0.08)" stroke="#52525b" stroke-width="1"/>
+  <text x="122" y="55" text-anchor="middle" font-size="9">μB₃</text>
+  <rect x="144" y="40" width="32" height="22" rx="4" fill="rgba(6,182,212,0.04)" stroke="#52525b" stroke-width="1"/>
+  <text x="160" y="55" text-anchor="middle" font-size="9">μB₄</text>
+
+  <line class="arrow-a" x1="100" y1="62" x2="100" y2="84"/>
+
+  <!-- Stage 0 -->
+  <rect class="box-accent" x="30" y="86" width="140" height="55"/>
+  <text class="accent" x="100" y="108" text-anchor="middle" font-size="12">Stage 0 — GPU 0</text>
+  <text x="100" y="124" text-anchor="middle">Layers 0–7</text>
+
+  <line class="arrow-a" x1="100" y1="141" x2="100" y2="163"/>
+  <text x="122" y="156" font-size="9" class="accent">activations</text>
+
+  <!-- Stage 1 -->
+  <rect class="box-accent" x="30" y="165" width="140" height="55"/>
+  <text class="accent" x="100" y="187" text-anchor="middle" font-size="12">Stage 1 — GPU 1</text>
+  <text x="100" y="203" text-anchor="middle">Layers 8–15</text>
+
+  <line class="arrow-a" x1="100" y1="220" x2="100" y2="242"/>
+
+  <!-- Stage 2 -->
+  <rect class="box-accent" x="30" y="244" width="140" height="55"/>
+  <text class="accent" x="100" y="266" text-anchor="middle" font-size="12">Stage 2 — GPU 2</text>
+  <text x="100" y="282" text-anchor="middle">Layers 16–23</text>
+
+  <line class="arrow-a" x1="100" y1="299" x2="100" y2="321"/>
+
+  <!-- Stage 3 -->
+  <rect class="box-accent" x="30" y="323" width="140" height="55"/>
+  <text class="accent" x="100" y="345" text-anchor="middle" font-size="12">Stage 3 — GPU 3</text>
+  <text x="100" y="361" text-anchor="middle">Layers 24–31</text>
+
+  <line class="arrow" x1="100" y1="378" x2="100" y2="396"/>
+  <text x="100" y="412" text-anchor="middle" font-size="10">loss / output</text>
+</svg>

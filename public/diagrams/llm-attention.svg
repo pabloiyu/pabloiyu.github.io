@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="none">
+  <style>
+    text { font-family: 'Inter', sans-serif; fill: #a1a1aa; }
+    .label { font-size: 13px; font-weight: 600; fill: #d4d4d8; }
+  </style>
+
+  <text class="label" x="150" y="20" text-anchor="middle">Attention Matrix</text>
+
+  <!-- Token labels along top -->
+  <text x="80" y="48" text-anchor="middle" font-size="10" fill="#06B6D4">The</text>
+  <text x="120" y="48" text-anchor="middle" font-size="10" fill="#06B6D4">cat</text>
+  <text x="160" y="48" text-anchor="middle" font-size="10" fill="#06B6D4">sat</text>
+  <text x="200" y="48" text-anchor="middle" font-size="10" fill="#06B6D4">on</text>
+  <text x="240" y="48" text-anchor="middle" font-size="10" fill="#06B6D4">the</text>
+
+  <!-- Token labels along left -->
+  <text x="48" y="80" text-anchor="end" font-size="10" fill="#06B6D4">The</text>
+  <text x="48" y="120" text-anchor="end" font-size="10" fill="#06B6D4">cat</text>
+  <text x="48" y="160" text-anchor="end" font-size="10" fill="#06B6D4">sat</text>
+  <text x="48" y="200" text-anchor="end" font-size="10" fill="#06B6D4">on</text>
+  <text x="48" y="240" text-anchor="end" font-size="10" fill="#06B6D4">the</text>
+
+  <!-- Causal attention matrix (lower-triangular) -->
+  <!-- Row 0: "The" attends to "The" only -->
+  <rect x="60" y="60" width="36" height="36" rx="3" fill="#06B6D4" opacity="0.9" stroke="#06B6D4" stroke-width="0.5"/>
+
+  <!-- Row 1: "cat" attends to "The", "cat" -->
+  <rect x="60" y="100" width="36" height="36" rx="3" fill="#06B6D4" opacity="0.35" stroke="#06B6D4" stroke-width="0.5"/>
+  <rect x="100" y="100" width="36" height="36" rx="3" fill="#06B6D4" opacity="0.7" stroke="#06B6D4" stroke-width="0.5"/>
+
+  <!-- Row 2: "sat" attends to "The", "cat", "sat" -->
+  <rect x="60" y="140" width="36" height="36" rx="3" fill="#06B6D4" opacity="0.15" stroke="#06B6D4" stroke-width="0.5"/>
+  <rect x="100" y="140" width="36" height="36" rx="3" fill="#06B6D4" opacity="0.55" stroke="#06B6D4" stroke-width="0.5"/>
+  <rect x="140" y="140" width="36" height="36" rx="3" fill="#06B6D4" opacity="0.45" stroke="#06B6D4" stroke-width="0.5"/>
+
+  <!-- Row 3: "on" attends to all so far -->
+  <rect x="60" y="180" width="36" height="36" rx="3" fill="#06B6D4" opacity="0.1" stroke="#06B6D4" stroke-width="0.5"/>
+  <rect x="100" y="180" width="36" height="36" rx="3" fill="#06B6D4" opacity="0.25" stroke="#06B6D4" stroke-width="0.5"/>
+  <rect x="140" y="180" width="36" height="36" rx="3" fill="#06B6D4" opacity="0.5" stroke="#06B6D4" stroke-width="0.5"/>
+  <rect x="180" y="180" width="36" height="36" rx="3" fill="#06B6D4" opacity="0.35" stroke="#06B6D4" stroke-width="0.5"/>
+
+  <!-- Row 4: "the" attends to all -->
+  <rect x="60" y="220" width="36" height="36" rx="3" fill="#06B6D4" opacity="0.08" stroke="#06B6D4" stroke-width="0.5"/>
+  <rect x="100" y="220" width="36" height="36" rx="3" fill="#06B6D4" opacity="0.2" stroke="#06B6D4" stroke-width="0.5"/>
+  <rect x="140" y="220" width="36" height="36" rx="3" fill="#06B6D4" opacity="0.15" stroke="#06B6D4" stroke-width="0.5"/>
+  <rect x="180" y="220" width="36" height="36" rx="3" fill="#06B6D4" opacity="0.45" stroke="#06B6D4" stroke-width="0.5"/>
+  <rect x="220" y="220" width="36" height="36" rx="3" fill="#06B6D4" opacity="0.6" stroke="#06B6D4" stroke-width="0.5"/>
+
+  <!-- Masked (upper-triangle) indicators -->
+  <rect x="100" y="60" width="36" height="36" rx="3" fill="#27272a" opacity="0.6"/>
+  <rect x="140" y="60" width="36" height="36" rx="3" fill="#27272a" opacity="0.6"/>
+  <rect x="180" y="60" width="36" height="36" rx="3" fill="#27272a" opacity="0.6"/>
+  <rect x="220" y="60" width="36" height="36" rx="3" fill="#27272a" opacity="0.6"/>
+  <rect x="140" y="100" width="36" height="36" rx="3" fill="#27272a" opacity="0.6"/>
+  <rect x="180" y="100" width="36" height="36" rx="3" fill="#27272a" opacity="0.6"/>
+  <rect x="220" y="100" width="36" height="36" rx="3" fill="#27272a" opacity="0.6"/>
+  <rect x="180" y="140" width="36" height="36" rx="3" fill="#27272a" opacity="0.6"/>
+  <rect x="220" y="140" width="36" height="36" rx="3" fill="#27272a" opacity="0.6"/>
+  <rect x="220" y="180" width="36" height="36" rx="3" fill="#27272a" opacity="0.6"/>
+
+  <!-- Caption -->
+  <text x="150" y="282" text-anchor="middle" font-size="10">Causal (lower-triangular) mask</text>
+</svg>

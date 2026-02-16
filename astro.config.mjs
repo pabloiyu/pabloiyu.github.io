@@ -6,6 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://pabloiyu.github.io",
   output: "static",
+  devToolbar: { enabled: false },
   integrations: [react(), mdx()],
   vite: {
     plugins: [tailwindcss()],

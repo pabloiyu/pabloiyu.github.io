@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 400" fill="none">
+  <style>
+    text { font-family: 'Inter', sans-serif; fill: #a1a1aa; font-size: 12px; }
+    .label { font-size: 14px; font-weight: 600; fill: #d4d4d8; }
+    .accent { fill: #06B6D4; }
+    .box { stroke: #52525b; stroke-width: 1.5; rx: 8; fill: none; }
+    .box-accent { stroke: #06B6D4; stroke-width: 1.5; rx: 8; fill: rgba(6,182,212,0.05); }
+    .arrow { stroke: #52525b; stroke-width: 1.5; marker-end: url(#pArrow); }
+  </style>
+  <defs>
+    <marker id="pArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#52525b"/>
+    </marker>
+  </defs>
+
+  <text class="label" x="110" y="24" text-anchor="middle">Policy Gradient</text>
+
+  <!-- Step 1: Sample trajectory -->
+  <rect class="box" x="30" y="44" width="160" height="44"/>
+  <text x="110" y="70" text-anchor="middle">Sample trajectory τ</text>
+
+  <line class="arrow" x1="110" y1="88" x2="110" y2="108"/>
+
+  <!-- Step 2: Compute returns -->
+  <rect class="box" x="30" y="110" width="160" height="44"/>
+  <text x="110" y="130" text-anchor="middle">Compute returns</text>
+  <text x="110" y="144" text-anchor="middle" font-size="11" class="accent">R(τ) = Σ γᵗ rₜ</text>
+
+  <line class="arrow" x1="110" y1="154" x2="110" y2="174"/>
+
+  <!-- Step 3: Compute advantage -->
+  <rect class="box" x="30" y="176" width="160" height="44"/>
+  <text x="110" y="196" text-anchor="middle">Estimate advantage</text>
+  <text x="110" y="210" text-anchor="middle" font-size="11" class="accent">Â = R - V(s)</text>
+
+  <line class="arrow" x1="110" y1="220" x2="110" y2="240"/>
+
+  <!-- Step 4: Policy loss -->
+  <rect class="box-accent" x="30" y="242" width="160" height="50"/>
+  <text class="accent" x="110" y="262" text-anchor="middle" font-size="12">Policy loss</text>
+  <text x="110" y="280" text-anchor="middle" font-size="11">L = -𝔼[log π(a|s) · Â]</text>
+
+  <line class="arrow" x1="110" y1="292" x2="110" y2="312"/>
+
+  <!-- Step 5: Gradient step -->
+  <rect class="box-accent" x="30" y="314" width="160" height="44"/>
+  <text class="accent" x="110" y="334" text-anchor="middle" font-size="12">∇θ update</text>
+  <text x="110" y="348" text-anchor="middle" font-size="11">θ ← θ + α∇L</text>
+
+  <!-- Loop arrow back to top -->
+  <path d="M195 336 Q215 336 215 190 Q215 54 195 54" stroke="#06B6D4" stroke-width="1.5" fill="none" stroke-dasharray="4" opacity="0.4" marker-end="url(#pArrow)"/>
+  <text x="210" y="195" text-anchor="middle" font-size="10" class="accent" transform="rotate(-90,210,195)">iterate</text>
+</svg>

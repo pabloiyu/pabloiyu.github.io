@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 240" fill="none">
+  <style>
+    text { font-family: 'Inter', sans-serif; fill: #a1a1aa; }
+    .label { font-size: 14px; font-weight: 600; fill: #d4d4d8; }
+    .accent { fill: #06B6D4; }
+    .box { stroke: #52525b; stroke-width: 1.5; rx: 6; fill: none; }
+    .box-accent { stroke: #06B6D4; stroke-width: 1.5; rx: 6; }
+    .arrow { stroke: #52525b; stroke-width: 1.5; marker-end: url(#tpArr); }
+    .arrow-a { stroke: #06B6D4; stroke-width: 1.5; marker-end: url(#tpArrA); }
+  </style>
+  <defs>
+    <marker id="tpArr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#52525b"/>
+    </marker>
+    <marker id="tpArrA" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#06B6D4"/>
+    </marker>
+  </defs>
+
+  <text class="label" x="300" y="22" text-anchor="middle">Tensor Parallelism — Column Split</text>
+
+  <!-- Input X -->
+  <rect class="box" x="20" y="80" width="70" height="80"/>
+  <text x="55" y="124" text-anchor="middle" font-size="12">X</text>
+
+  <!-- Arrow to split -->
+  <line class="arrow" x1="90" y1="120" x2="130" y2="120"/>
+
+  <!-- Split indicator -->
+  <text x="142" y="75" text-anchor="middle" font-size="10" class="accent">scatter</text>
+
+  <!-- Weight column shards -->
+  <!-- GPU 0: top shard -->
+  <rect class="box-accent" x="155" y="55" width="100" height="50" fill="rgba(6,182,212,0.06)"/>
+  <text x="205" y="84" text-anchor="middle" font-size="11" class="accent">W₁ (GPU 0)</text>
+
+  <!-- GPU 1: bottom shard -->
+  <rect class="box-accent" x="155" y="130" width="100" height="50" fill="rgba(6,182,212,0.06)"/>
+  <text x="205" y="159" text-anchor="middle" font-size="11" class="accent">W₂ (GPU 1)</text>
+
+  <!-- Matmul arrows -->
+  <line class="arrow-a" x1="255" y1="80" x2="290" y2="80"/>
+  <line class="arrow-a" x1="255" y1="155" x2="290" y2="155"/>
+
+  <!-- Partial results -->
+  <rect class="box" x="292" y="55" width="80" height="50"/>
+  <text x="332" y="84" text-anchor="middle" font-size="11">Y₁ = XW₁</text>
+
+  <rect class="box" x="292" y="130" width="80" height="50"/>
+  <text x="332" y="159" text-anchor="middle" font-size="11">Y₂ = XW₂</text>
+
+  <!-- Gather arrows -->
+  <line class="arrow-a" x1="372" y1="80" x2="420" y2="110"/>
+  <line class="arrow-a" x1="372" y1="155" x2="420" y2="125"/>
+
+  <!-- All-reduce / concat -->
+  <rect class="box-accent" x="422" y="90" width="90" height="50" fill="rgba(6,182,212,0.06)"/>
+  <text x="467" y="112" text-anchor="middle" font-size="11" class="accent">all-gather</text>
+  <text x="467" y="128" text-anchor="middle" font-size="11">[Y₁ | Y₂]</text>
+
+  <!-- Output -->
+  <line class="arrow" x1="512" y1="115" x2="540" y2="115"/>
+  <rect class="box" x="542" y="90" width="48" height="50"/>
+  <text x="566" y="119" text-anchor="middle" font-size="12">Y</text>
+</svg>
