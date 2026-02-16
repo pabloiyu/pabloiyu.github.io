@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 320" fill="none">
+  <style>
+    text { font-family: 'Inter', sans-serif; fill: #a1a1aa; font-size: 11px; }
+    .label { font-size: 13px; font-weight: 600; fill: #d4d4d8; }
+    .accent { fill: #06B6D4; }
+    .box { stroke: #52525b; stroke-width: 1.5; rx: 8; fill: none; }
+    .box-accent { stroke: #06B6D4; stroke-width: 1.5; rx: 8; fill: rgba(6,182,212,0.05); }
+    .arrow { stroke: #52525b; stroke-width: 1.5; marker-end: url(#dpArr); }
+    .arrow-a { stroke: #06B6D4; stroke-width: 1.5; marker-end: url(#dpArrA); }
+  </style>
+  <defs>
+    <marker id="dpArr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#52525b"/>
+    </marker>
+    <marker id="dpArrA" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#06B6D4"/>
+    </marker>
+  </defs>
+
+  <text class="label" x="170" y="22" text-anchor="middle">Data Parallelism</text>
+
+  <!-- Full batch at top -->
+  <rect class="box" x="100" y="38" width="140" height="36"/>
+  <text x="170" y="60" text-anchor="middle" font-size="12">Full Batch B</text>
+
+  <!-- Split arrows -->
+  <line class="arrow" x1="140" y1="74" x2="80" y2="100"/>
+  <line class="arrow" x1="170" y1="74" x2="170" y2="100"/>
+  <line class="arrow" x1="200" y1="74" x2="260" y2="100"/>
+
+  <!-- 3 GPU replicas -->
+  <rect class="box-accent" x="20" y="102" width="120" height="100"/>
+  <text class="accent" x="80" y="124" text-anchor="middle" font-size="12">GPU 0</text>
+  <rect x="35" y="132" width="90" height="18" rx="3" fill="rgba(6,182,212,0.08)" stroke="#52525b" stroke-width="1"/>
+  <text x="80" y="145" text-anchor="middle" font-size="10">Model (full copy)</text>
+  <rect x="35" y="156" width="90" height="18" rx="3" fill="rgba(6,182,212,0.15)" stroke="#06B6D4" stroke-width="1"/>
+  <text x="80" y="169" text-anchor="middle" font-size="10" class="accent">B/3 shard</text>
+  <text x="80" y="193" text-anchor="middle" font-size="10">∇θ₀</text>
+
+  <rect class="box-accent" x="155" y="102" width="30" height="100"/>
+  <text class="accent" x="170" y="155" text-anchor="middle" font-size="10" transform="rotate(-90,170,155)">GPU 1</text>
+
+  <rect class="box-accent" x="200" y="102" width="120" height="100"/>
+  <text class="accent" x="260" y="124" text-anchor="middle" font-size="12">GPU 2</text>
+  <rect x="215" y="132" width="90" height="18" rx="3" fill="rgba(6,182,212,0.08)" stroke="#52525b" stroke-width="1"/>
+  <text x="260" y="145" text-anchor="middle" font-size="10">Model (full copy)</text>
+  <rect x="215" y="156" width="90" height="18" rx="3" fill="rgba(6,182,212,0.15)" stroke="#06B6D4" stroke-width="1"/>
+  <text x="260" y="169" text-anchor="middle" font-size="10" class="accent">B/3 shard</text>
+  <text x="260" y="193" text-anchor="middle" font-size="10">∇θ₂</text>
+
+  <!-- All-reduce -->
+  <line class="arrow-a" x1="80" y1="202" x2="80" y2="232"/>
+  <line class="arrow-a" x1="170" y1="202" x2="170" y2="232"/>
+  <line class="arrow-a" x1="260" y1="202" x2="260" y2="232"/>
+
+  <rect class="box-accent" x="40" y="234" width="260" height="36" fill="rgba(6,182,212,0.06)"/>
+  <text class="accent" x="170" y="256" text-anchor="middle" font-size="12">All-Reduce: ∇θ = avg(∇θ₀, ∇θ₁, ∇θ₂)</text>
+
+  <!-- Sync back -->
+  <line class="arrow" x1="170" y1="270" x2="170" y2="296"/>
+  <text x="170" y="310" text-anchor="middle" font-size="11">θ ← θ - α∇θ  (synchronized)</text>
+</svg>

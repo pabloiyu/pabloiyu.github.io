@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 380" fill="none">
+  <style>
+    text { font-family: 'Inter', sans-serif; fill: #a1a1aa; font-size: 11px; }
+    .label { font-size: 13px; font-weight: 600; fill: #d4d4d8; }
+    .accent { fill: #06B6D4; }
+    .box { stroke: #52525b; stroke-width: 1.5; rx: 6; fill: none; }
+    .box-accent { stroke: #06B6D4; stroke-width: 1.5; rx: 6; fill: rgba(6,182,212,0.06); }
+    .arrow { stroke: #52525b; stroke-width: 1.5; marker-end: url(#kvArr); }
+    .arrow-a { stroke: #06B6D4; stroke-width: 1.5; marker-end: url(#kvArrA); }
+  </style>
+  <defs>
+    <marker id="kvArr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#52525b"/>
+    </marker>
+    <marker id="kvArrA" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#06B6D4"/>
+    </marker>
+  </defs>
+
+  <text class="label" x="100" y="22" text-anchor="middle">KV Cache</text>
+
+  <!-- New token input -->
+  <rect class="box-accent" x="60" y="38" width="80" height="32" rx="6"/>
+  <text class="accent" x="100" y="58" text-anchor="middle">new token xₜ</text>
+
+  <line class="arrow-a" x1="100" y1="70" x2="100" y2="88"/>
+
+  <!-- Q projection -->
+  <rect class="box" x="60" y="90" width="80" height="28"/>
+  <text x="100" y="108" text-anchor="middle">Q = Wq · xₜ</text>
+
+  <!-- K,V projections -->
+  <rect class="box" x="20" y="140" width="70" height="28"/>
+  <text x="55" y="158" text-anchor="middle">Kₜ = Wk·xₜ</text>
+  <rect class="box" x="110" y="140" width="70" height="28"/>
+  <text x="145" y="158" text-anchor="middle">Vₜ = Wv·xₜ</text>
+
+  <line class="arrow" x1="80" y1="118" x2="55" y2="138"/>
+  <line class="arrow" x1="120" y1="118" x2="145" y2="138"/>
+
+  <!-- Cache store -->
+  <rect class="box-accent" x="15" y="190" width="170" height="70"/>
+  <text class="accent" x="100" y="210" text-anchor="middle" font-size="12">Cached K₁..ₜ , V₁..ₜ</text>
+  <!-- Stacked rows to suggest stored keys -->
+  <rect x="25" y="218" width="150" height="8" rx="2" fill="#06B6D4" opacity="0.08"/>
+  <rect x="25" y="228" width="150" height="8" rx="2" fill="#06B6D4" opacity="0.12"/>
+  <rect x="25" y="238" width="150" height="8" rx="2" fill="#06B6D4" opacity="0.18"/>
+  <rect x="25" y="248" width="150" height="8" rx="2" fill="#06B6D4" opacity="0.25"/>
+
+  <line class="arrow-a" x1="55" y1="168" x2="55" y2="188"/>
+  <line class="arrow-a" x1="145" y1="168" x2="145" y2="188"/>
+
+  <!-- Attention computation -->
+  <line class="arrow" x1="100" y1="260" x2="100" y2="280"/>
+  <rect class="box" x="30" y="282" width="140" height="32"/>
+  <text x="100" y="302" text-anchor="middle">Attn = softmax(QKᵀ)V</text>
+
+  <!-- Output -->
+  <line class="arrow-a" x1="100" y1="314" x2="100" y2="334"/>
+  <rect class="box-accent" x="50" y="336" width="100" height="28"/>
+  <text class="accent" x="100" y="354" text-anchor="middle">output oₜ</text>
+</svg>
