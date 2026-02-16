@@ -1,0 +1,11 @@
+---
+title: "LLM Inference"
+description: "High-throughput token generation"
+diagram: "/diagrams/llm-pipeline.svg"
+---
+
+Large Language Model inference involves generating text token-by-token through autoregressive decoding, where each new token depends on all previous tokens.
+
+Optimizing inference throughput requires techniques like KV-cache management, continuous batching, speculative decoding, and quantization. These optimizations can reduce latency by orders of magnitude.
+
+The animation shows tokens flowing through a transformer block — the core computational unit. Each token is contextualized by attending to all previous tokens in the sequence.

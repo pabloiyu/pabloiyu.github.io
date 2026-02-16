@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-accent: #06B6D4;
+  --color-accent-light: #22D3EE;
+  --color-accent-dim: #0E7490;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+/* Dark mode defaults */
+html.dark {
+  color-scheme: dark;
+}

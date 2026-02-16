@@ -1,0 +1,12 @@
+---
+import Layout from "../layouts/Layout.astro";
+import DarkModeToggle from "../components/DarkModeToggle.astro";
+import IntroSection from "../components/IntroSection.astro";
+import { BentoGrid } from "../components/BentoGrid";
+---
+
+<Layout>
+  <DarkModeToggle />
+  <IntroSection />
+  <BentoGrid client:visible />
+</Layout>
